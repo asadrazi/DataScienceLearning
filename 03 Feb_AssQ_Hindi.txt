@@ -1,0 +1,167 @@
+Q1. Which keyword is used to create a function? Create a function to return a list of odd numbers in the 
+range of 1 to 25.
+
+Ans: In Python, the "def" keyword is used to create a function.
+def get_odd_numbers():
+    odd_numbers = []
+    for num in range(1, 25):
+        if num % 2 != 0:
+            odd_numbers.append(num)
+    return odd_numbers
+	
+	odd_numbers_list = get_odd_numbers() # calling function get_odd_numbers
+	Print(odd_numbers_list) # Printing result
+	Output : [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23]
+	
+
+Q2. Why *args and **kwargs is used in some functions? Create a function each for *args and **kwargs 
+to demonstrate their use.
+Ans: *args is used to pass a variable number of non-keyword (positional) arguments to a function, example:
+def sum_numbers(*args):
+    total = 0
+    for num in args:
+        total += num
+    return total
+
+result = sum_numbers(1, 2, 3, 4, 5)
+print(result)
+
+**kwargs is used to pass a variable number of keyword arguments (named arguments) to a function. Example:
+def print_info(**kwargs):
+    for key, value in kwargs.items():
+        print(f"{key}: {value}")
+
+print_info(name="John", age=25, occupation="Engineer")
+
+OUTPUT: 
+name: John
+age: 25
+occupation: Engineer
+
+
+Q3.  What is an iterator in python? Name the method used to initialise the iterator object and the method 
+used for iteration. Use these methods to print the first five elements of the given list [2, 4, 6, 8, 10, 12, 14, 
+16, 18, 20].
+
+Ans:  an iterator is an object that allows you to loop through a collection of elements one by one, enabling sequential access to the elements. 
+iter() method is used to initialize an iterator object from an iterable, next() method is used to retrieve the next element from the iterator.
+
+my_list = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
+my_iterator = iter(my_list)
+
+for _ in range(5):
+    element = next(my_iterator)
+    print(element)
+
+
+Q4.  What is a generator function in python? Why yield keyword is used? Give an example of a generator 
+function.
+
+Ans: A generator function is a special type of function that uses the yield keyword to return values one at a time,
+ instead of returning all the values at once like a regular function
+ Example:
+ def square_generator(n):
+    for i in range(n):
+        yield i ** 2
+		
+for square in square_generator(5):
+    print(square)
+
+
+Q5. Create a generator function for prime numbers less than 1000. Use the next() method to print the 
+first 20 prime numbers.
+Ans:
+
+def generate_primes(limit):
+    primes = []
+    num = 2
+
+    while num < limit:
+        is_prime = True
+
+        for prime in primes:
+            if prime * prime > num:
+                break
+            if num % prime == 0:
+                is_prime = False
+                break
+
+        if is_prime:
+            primes.append(num)
+            yield num
+
+        num += 1
+
+# Using the generator function with the next() method
+prime_generator = generate_primes(1000)
+
+for _ in range(20):
+    print(next(prime_generator))
+
+
+
+Q6. Write a python program to print the first 10 Fibonacci numbers using a while loop.
+Ans:
+# Function to print the first 10 Fibonacci numbers
+def print_fibonacci_numbers(n):
+    first_num, second_num = 0, 1
+    count = 0
+
+    while count < n:
+        print(first_num, end=" ")
+
+        # Update the Fibonacci sequence
+        temp = first_num + second_num
+        first_num = second_num
+        second_num = temp
+
+        count += 1
+
+# Call the function to print the first 10 Fibonacci numbers
+print_fibonacci_numbers(10)
+
+
+Q7. Write a List Comprehension to iterate through the given string: ‘pwskills’.
+Ans:
+
+string = 'pwskills'
+result_list = [char for char in string]
+print(result_list)
+Output : ['p', 'w', 's', 'k', 'i', 'l', 'l', 's']
+
+
+Q8. Write a python program to check whether a given number is Palindrome or not using a while loop.
+Ans:
+
+def is_palindrome(number):
+    original_number = number
+    reversed_number = 0
+
+    while number > 0:
+        digit = number % 10
+        reversed_number = reversed_number * 10 + digit
+        number = number // 10
+
+    return original_number == reversed_number
+
+# Test the function with some numbers
+num1 = 12321
+num2 = 45654
+
+if is_palindrome(num1):
+    print(num1, "is a palindrome.")
+else:
+    print(num1, "is not a palindrome.")
+
+if is_palindrome(num2):
+    print(num2, "is a palindrome.")
+else:
+    print(num2, "is not a palindrome.")
+
+
+
+Q9. Write a code to print odd numbers from 1 to 100 using list comprehension.
+
+Ans: 
+odd_numbers = [num for num in range(1, 101) if num % 2 != 0]
+print(odd_numbers)
